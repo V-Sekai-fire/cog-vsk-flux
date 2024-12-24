@@ -99,7 +99,7 @@ class Inputs:
         default="1:1",
     )
     num_outputs = Input(
-        description="Number of outputs to generate", default=1, le=4, ge=1
+        description="Number of outputs to generate", default=16, le=16, ge=1
     )
     seed = Input(
         description="Random seed. Set for reproducible generation", default=None
@@ -121,11 +121,11 @@ class Inputs:
     )
     lora_weights: Input = Input(
         description="Load LoRA weights. Supports Replicate models in the format <owner>/<username> or <owner>/<username>/<version>, HuggingFace URLs in the format huggingface.co/<owner>/<model-name>, CivitAI URLs in the format civitai.com/models/<id>[/<model-name>], or arbitrary .safetensors URLs from the Internet. For example, 'fofr/flux-pixar-cars'",
-        default=None,
+        default="civitai.com/models/100435",
     )
     lora_scale = Input(
         description="Determines how strongly the main LoRA should be applied. Sane results between 0 and 1 for base inference. For go_fast we apply a 1.5x multiplier to this value; we've generally seen good performance when scaling the base value by that amount. You may still need to experiment to find the best value for your particular lora.",
-        default=1.0,
+        default=0.8,
         le=3.0,
         ge=-1.0,
     )
@@ -843,7 +843,7 @@ class SchnellPredictor(Predictor):
         aspect_ratio: str = Inputs.aspect_ratio,
         num_outputs: int = Inputs.num_outputs,
         num_inference_steps: int = Inputs.num_inference_steps_with(
-            le=4, default=4, recommended=4
+            le=8, default=8, recommended=8
         ),
         seed: int = Inputs.seed,
         output_format: str = Inputs.output_format,

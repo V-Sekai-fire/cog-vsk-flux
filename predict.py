@@ -100,7 +100,7 @@ class Inputs:
         default="2:1",
     )
     num_outputs = Input(
-        description="Number of outputs to generate", default=4, le=4, ge=1
+        description="Number of outputs to generate", default=1, le=4, ge=1
     )
     seed = Input(
         description="Random seed. Set for reproducible generation", default=None

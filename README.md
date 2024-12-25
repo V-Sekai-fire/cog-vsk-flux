@@ -41,6 +41,10 @@ cog push r8.im/<your-username>/<your-model-name>
 
 Learn more on [the deploy a custom model guide in the Replicate documentation](https://replicate.com/docs/guides/deploy-a-custom-model).
 
+### Troubleshooting
+
+If you cannot `cog push` in Docker Desktop, try disabling containerd.
+
 ## Contributing
 
 Pull requests and issues are welcome! If you see a novel technique or feature you think will make FLUX.1 inference better or faster, let us know and we'll do our best to integrate it.

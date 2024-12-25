@@ -77,6 +77,7 @@ logging.getLogger("transformers").setLevel(logging.CRITICAL)
 
 ASPECT_RATIOS = {
     "1:1": (1024, 1024),
+    "2:1": (2048, 1024),
     "16:9": (1344, 768),
     "21:9": (1536, 640),
     "3:2": (1216, 832),
@@ -96,7 +97,7 @@ class Inputs:
     aspect_ratio = Input(
         description="Aspect ratio for the generated image",
         choices=list(ASPECT_RATIOS.keys()),
-        default="1:1",
+        default="2:1",
     )
     num_outputs = Input(
         description="Number of outputs to generate", default=4, le=4, ge=1

@@ -1,7 +1,12 @@
 # Configuration for Cog ⚙️
 # Reference: https://cog.run/yaml
 
+image: "r8.im/fire/flux"
+
 build:
+
+  cog_runtime: true
+  
   # set to true if your model requires a GPU
   gpu: true
   cuda: "12.4"

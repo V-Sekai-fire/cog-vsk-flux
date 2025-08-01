@@ -108,7 +108,7 @@ class Inputs:
     output_format = Input(
         description="Format of the output images",
         choices=["webp", "jpg", "png"],
-        default="webp",
+        default="png",
     )
     output_quality = Input(
         description="Quality when saving the output images, from 0 to 100. 100 is best quality, 0 is lowest quality. Not relevant for .png outputs",

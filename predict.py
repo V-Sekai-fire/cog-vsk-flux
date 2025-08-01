@@ -844,7 +844,7 @@ class SchnellPredictor(Predictor):
         aspect_ratio: str = Inputs.aspect_ratio,
         num_outputs: int = Inputs.num_outputs,
         num_inference_steps: int = Inputs.num_inference_steps_with(
-            le=8, default=8, recommended=8
+            le=8, default=4, recommended=4
         ),
         seed: int = Inputs.seed,
         output_format: str = Inputs.output_format,

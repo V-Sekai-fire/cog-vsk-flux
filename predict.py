@@ -103,7 +103,7 @@ class Inputs:
         description="Number of outputs to generate", default=1, le=4, ge=1
     )
     seed = Input(
-        description="Random seed. Set for reproducible generation", default=None
+        description="Random seed. Set for reproducible generation", default=0
     )
     output_format = Input(
         description="Format of the output images",

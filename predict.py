@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 import os
 import time
-from typing import Any, Tuple
+from typing import Any, Tuple, Optional
 
 import torch
 from torch import Tensor
@@ -881,7 +881,7 @@ class DevPredictor(Predictor):
         self,
         prompt: str = Inputs.prompt,
         aspect_ratio: str = Inputs.aspect_ratio,
-        image: Path = Input(
+        image: Optional[Path] = Input(
             description="Input image for image to image mode. The aspect ratio of your output will match this image",
             default=None,
         ),
@@ -982,7 +982,7 @@ class DevLoraPredictor(Predictor):
         self,
         prompt: str = Inputs.prompt,
         aspect_ratio: str = Inputs.aspect_ratio,
-        image: Path = Input(
+        image: Optional[Path] = Input(
             description="Input image for image to image mode. The aspect ratio of your output will match this image",
             default=None,
         ),
@@ -1168,7 +1168,7 @@ class FillDevPredictor(Predictor):
         image: Path = Input(
             description=f"The image to inpaint. Can contain alpha mask. If the image width or height are not multiples of 32, they will be scaled to the closest multiple of 32. If the image dimensions don't fit within {MAX_IMAGE_SIZE}x{MAX_IMAGE_SIZE}, it will be scaled down to fit."
         ),
-        mask: Path = Input(
+        mask: Optional[Path] = Input(
             description="A black-and-white image that describes the part of the image to inpaint. Black areas will be preserved while white areas will be inpainted.",
             default=None,
         ),
@@ -1226,11 +1226,11 @@ class HotswapPredictor(BasePredictor):
         prompt: str = Input(
             description="Prompt for generated image. If you include the `trigger_word` used in the training process you are more likely to activate the trained object, style, or concept in the resulting image."
         ),
-        image: Path = Input(
+        image: Optional[Path] = Input(
             description="Input image for image to image or inpainting mode. If provided, aspect_ratio, width, and height inputs are ignored.",
             default=None,
         ),
-        mask: Path = Input(
+        mask: Optional[Path] = Input(
             description="Image mask for image inpainting mode. If provided, aspect_ratio, width, and height inputs are ignored.",
             default=None,
         ),
@@ -1239,13 +1239,13 @@ class HotswapPredictor(BasePredictor):
             choices=list(ASPECT_RATIOS.keys()) + ["custom"],
             default="1:1",
         ),
-        height: int = Input(
+        height: Optional[int] = Input(
             description="Height of generated image. Only works if `aspect_ratio` is set to custom. Will be rounded to nearest multiple of 16. Incompatible with fast generation",
             ge=256,
             le=1440,
             default=None,
         ),
-        width: int = Input(
+        width: Optional[int] = Input(
             description="Width of generated image. Only works if `aspect_ratio` is set to custom. Will be rounded to nearest multiple of 16. Incompatible with fast generation",
             ge=256,
             le=1440,
@@ -1283,7 +1283,7 @@ class HotswapPredictor(BasePredictor):
         megapixels: str = Inputs.megapixels,
         replicate_weights: str = Inputs.lora_weights,
         lora_scale: float = Inputs.lora_scale,
-        extra_lora: str = Input(
+        extra_lora: Optional[str] = Input(
             description="Load LoRA weights. Supports Replicate models in the format <owner>/<username> or <owner>/<username>/<version>, HuggingFace URLs in the format huggingface.co/<owner>/<model-name>, CivitAI URLs in the format civitai.com/models/<id>[/<model-name>], or arbitrary .safetensors URLs from the Internet. For example, 'fofr/flux-pixar-cars'",
             default=None,
         ),

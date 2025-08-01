@@ -479,8 +479,9 @@ class Predictor(BasePredictor):
         init_image = None
         img_cond = None
 
-        if not seed:
+        if seed == 0:
             seed = int.from_bytes(os.urandom(2), "big")
+        
         print(f"Using seed: {seed}")
 
         if mask_path:
